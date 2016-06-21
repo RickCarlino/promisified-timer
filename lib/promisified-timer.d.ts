@@ -14,7 +14,7 @@ declare namespace PromisifiedTimer {
         /** Start a timer with a label, allowing cancelation. */
         start(name: string, delay: number): Promise;
         start(delay: number): Promise;
-        stop: (name: string) => any;
+        stop(name: string): any;
     }
     var timer: Timer;
 }
