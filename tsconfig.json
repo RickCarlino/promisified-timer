@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "module": "umd",
+        "declaration": true,
+        "outDir": "lib/",
+        "noImplicitAny": true
+    },
+    "files": [
+        "./lib/promisified-timer.ts"
+    ]
+}

@@ -1,23 +1,21 @@
 {
-  "name": "timer-promise",
-  "version": "0.0.2",
+  "name": "promisified-timer",
+  "version": "0.0.1",
   "description": "Promise version of setTimeout and clearTimeout",
   "repository": {
     "type": "git",
-    "url": "git@github.com:iwongu/timer-promise.git"
+    "url": "git@github.com:RickCarlino/promisified-timer.git"
   },
-  "homepage": "https://github.com/iwongu/timer-promise",
+  "homepage": "https://github.com/RickCarlino/promisified-timer",
   "bugs": {
-    "url": "https://github.com/iwongu/timer-promise/issues"
+    "url": "https://github.com/RickCarlino/promisified-timer/issues"
   },
+  "entry": "./lib/promisified-timer.js",
+  "typings": "./lib/promisified-timer.d.ts",
   "tags": [
     "promise",
     "timer",
     "setTimeout",
     "clearTimeout"
-  ],
-  "devDependencies": {},
-  "dependencies": {
-    "promise": "^6.1.0"
-  }
+  ]
 }
