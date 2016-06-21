@@ -5,7 +5,7 @@ namespace PromisifiedTimer {
   }
 
   export interface Resolution {
-    (val?: number|string): any;
+    (val?: number | string): any;
   }
 
   export interface Promise {
@@ -18,7 +18,7 @@ namespace PromisifiedTimer {
     /** Start a timer with a label, allowing cancelation. */
     start(name: string, delay: number): Promise;
     start(delay: number): Promise;
-    stop: (name: string) => any;
+    stop(name: string): any;
   }
 
   interface Names {
@@ -28,42 +28,47 @@ namespace PromisifiedTimer {
   declare var Promise: Promise;
   var names: Names = {};
 
-  export var timer: Timer = {
-    start: function (name: string|number, delay?: number) {
-      if (typeof name === 'string') {
-        timer.stop(name);
-        return new Promise(function (resolve, reject) {
-          names[name] = setTimeout(function () {
-            if (names[name]) {
-              resolve(name);
-              delete names[name];
-            } else {
-              reject();  // cleared
-            }
-          }, delay);
-        });
-      };
-      if (typeof name === 'number') {
-        delay = name;
-        return new Promise(function (resolve, reject) {
-          setTimeout(function () {
+  export var timer = {} as Timer;
+
+  timer.start = function (name: string | number, delay?: number) {
+    if (typeof name === 'string') {
+      timer.stop(name);
+      return new Promise(function (resolve, reject) {
+        names[name] = setTimeout(function () {
+          if (names[name]) {
             resolve(name);
-          }, delay);
-        });
-      }
-      throw new Error("Timer expects a number or string.");
-    },
-    stop: function (name) {
-      if (typeof name == 'string') {
-        if (names[name]) {
-          clearTimeout(names[name]);
-          delete names[name];
-        }
+            delete names[name];
+          } else {
+            reject();  // cleared
+          }
+        }, delay);
+      });
+    };
+    if (typeof name === 'number') {
+      delay = name;
+      return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+          resolve(name);
+        }, delay);
+      });
+    }
+    throw new Error("Timer expects a number or string.");
+  };
+
+  timer.stop = function (name: string) {
+    if (typeof name == 'string') {
+      if (names[name]) {
+        clearTimeout(names[name]);
+        delete names[name];
       }
     }
   };
+
 }
 
 declare module "promisified-timer" {
   export = PromisifiedTimer;
 }
+
+
+
