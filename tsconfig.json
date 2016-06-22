@@ -1,12 +1,12 @@
 {
     "compilerOptions": {
         "target": "ES6",
-        "module": "umd",
+        "module": "commonjs",
         "declaration": true,
-        "outDir": "lib/",
+        "outDir": ".",
         "noImplicitAny": true
     },
     "files": [
-        "./lib/promisified-timer.ts"
+        "./lib/index.ts"
     ]
 }

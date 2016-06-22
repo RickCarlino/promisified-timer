@@ -1,6 +1,6 @@
 {
   "name": "promisified-timer",
-  "version": "0.1.0",
+  "version": "0.1.3",
   "description": "Promise version of setTimeout and clearTimeout",
   "repository": {
     "type": "git",
@@ -10,8 +10,8 @@
   "bugs": {
     "url": "https://github.com/RickCarlino/promisified-timer/issues"
   },
-  "entry": "./lib/promisified-timer.js",
-  "typings": "./lib/promisified-timer.d.ts",
+  "main": "index.js",
+  "typings": "index.d.ts",
   "tags": [
     "promise",
     "timer",
