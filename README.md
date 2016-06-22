@@ -6,6 +6,7 @@ Stuff I added ontop of the original:
 
  * UMD modules for frontend use.
  * Typescript definitions.
+ * Use ES6 Promises (or a polyfil) instead of bringing it in via node require().
 
 Promise version of setTimeout and clearTimeout
 
@@ -14,12 +15,12 @@ You can start and stop timer like this.
 ```js
 var timer = require('timer-promise');
 
-timer.start('foo', 5000).
+Timer.start('foo', 5000).
   then(function() {
   }, function(cancelled) {
   });
 ...
-timer.stop('foo');
+Timer.stop('foo');
 ```
 instead of
 ```js

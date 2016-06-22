@@ -7,11 +7,11 @@
 
   var names: { [name: string]: number; } = {};
 
-  export var timer = {} as PromisifiedTimer;
+  export var Timer = {} as PromisifiedTimer;
 
-  timer.start = function (name: string|number, delay?: number) {
+  Timer.start = function (name: string|number, delay?: number) {
     if (typeof name === 'string') {
-      timer.stop(name);
+      Timer.stop(name);
       return new Promise<string|number>(function (resolve, reject) {
         names[name] = setTimeout(function () {
           if (names[name]) {
@@ -34,7 +34,7 @@
     throw new Error("Timer expects a number or string.");
   };
 
-  timer.stop = function (name: string) {
+  Timer.stop = function (name: string) {
     if (typeof name == 'string') {
       if (names[name]) {
         clearTimeout(names[name]);

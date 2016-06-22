@@ -4,4 +4,4 @@ export interface PromisifiedTimer {
     start(name: number): Promise<number>;
     stop(name: string): any;
 }
-export declare var timer: PromisifiedTimer;
+export declare var Timer: PromisifiedTimer;
