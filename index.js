@@ -1,1 +1,1 @@
-module.exports = require('./lib/timer-promise');
+module.exports = require('./lib/pomisified-timer');

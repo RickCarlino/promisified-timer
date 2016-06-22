@@ -1,39 +1,18 @@
-namespace PromisifiedTimer {
-
-  export interface Rejection {
-    (err?: void): any;
-  }
-
-  export interface Resolution {
-    (val?: number | string): any;
-  }
-
-  export interface Promise {
-    new (handler: (resolve: Function, reject: Function) => void): Promise;
-    then(resolver: Resolution, rejector?: Rejection): Promise;
-    catch(rejector: Rejection): Promise;
-  }
-
-  export interface Timer {
+  export interface PromisifiedTimer {
     /** Start a timer with a label, allowing cancelation. */
-    start(name: string, delay: number): Promise;
-    start(delay: number): Promise;
+    start(name: string, delay: number): Promise<string>;
+    start(name: number): Promise<number>;
     stop(name: string): any;
   }
 
-  interface Names {
-    [name: string]: number;
-  }
+  var names: { [name: string]: number; } = {};
 
-  declare var Promise: Promise;
-  var names: Names = {};
+  export var timer = {} as PromisifiedTimer;
 
-  export var timer = {} as Timer;
-
-  timer.start = function (name: string | number, delay?: number) {
+  timer.start = function (name: string|number, delay?: number) {
     if (typeof name === 'string') {
       timer.stop(name);
-      return new Promise(function (resolve, reject) {
+      return new Promise<string|number>(function (resolve, reject) {
         names[name] = setTimeout(function () {
           if (names[name]) {
             resolve(name);
@@ -43,7 +22,7 @@ namespace PromisifiedTimer {
           }
         }, delay);
       });
-    };
+    }
     if (typeof name === 'number') {
       delay = name;
       return new Promise(function (resolve, reject) {
@@ -63,12 +42,6 @@ namespace PromisifiedTimer {
       }
     }
   };
-
-}
-
-declare module "promisified-timer" {
-  export = PromisifiedTimer;
-}
 
 
 
